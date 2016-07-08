@@ -44,15 +44,32 @@ perfects xs=[x|x<-[1..xs],x==sum (factors x)]
 testPerfects=perfects 500==[6, 28, 496]
 
 --5-5
---Show how the single comprehension [(x,y) | x ← [1,2,3],y ← [4,5,6]] with two generators can be re-expressed using two comprehen- sions with single generators
+--Show how the single comprehension [(x,y) | x ← [1,2,3],y ← [4,5,6]] with two generators 
+--can be re-expressed using two comprehensions with single generators
+-- 诡异的题目... TODO
 tar5=[(x,y) | x <- [1,2,3],y <- [4,5,6]]
+-- ([1,2,3],[4,5,6])
 
+-- 5-6
 
+-- 用于本来就key-value pair 的列表...
+find :: Eq a => a -> [(a,b)] -> [b] 
+find k t = [v|(k',v)<-t,k==k'] -- select v from t where t.k=k
+testFind=find 'b'[('a',1),('b',2),('c',3),('b',4)]==[2,4]
 
+positions::Eq a=>a->[a]->[Int]
+positions x xs=find x (zip xs [1..])
+testPositions=positions 6 [6,8,5,6,7]==[1,4]
 
+-- 5-7
+scalarProduct :: [Int]->[Int]->Int
+scalarProduct xs ys=sum [x*y|(x,y)<-zip xs ys] 
+testScalarProduct=scalarProduct [1, 2, 3] [4, 5, 6]==32
 
+--5-8 Modify the Caesar cipher program to also handle upper-case letters.
 
-
+--see play.hs
+--and the cracking algorithm handles upper-case letters too :)
 
 
 
