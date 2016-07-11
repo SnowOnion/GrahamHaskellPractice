@@ -58,7 +58,7 @@ myzip (x:xs) (y:ys) = (x,y):myzip xs ys
 testMyzip=myzip [1,2] [3,4,5]==[(1,3),(2,4)]
 
 mydrop :: Int->[a]->[a]
-mydrop 0 xs=xs
+mydrop n xs | n<=0 = xs
 -- mydrop (n+1) (x:xs)=mydrop n xs -- Integer pattern is removed from Haskell! 
 mydrop n []=[]
 mydrop n (x:xs) = mydrop (n-1) xs -- n==0已经被匹配掉了!
